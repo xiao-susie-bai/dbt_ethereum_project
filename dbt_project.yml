@@ -52,6 +52,14 @@ models:
         - powerbi
         - report
       +schema: marts
+      stablecoin_activity_per_day: 
+        +post_hook: 
+          - GRANT USAGE ON DATABASE DBT TO ROLE TESTER; 
+          - GRANT USAGE ON SCHEMA DBT.XIAOBAI_MARTS TO ROLE TESTER; 
+          - GRANT USAGE ON DATABASE DBT TO ROLE BA; 
+          - GRANT USAGE ON SCHEMA DBT.XIAOBAI_MARTS TO ROLE BA; 
+        +grants: 
+          select: ['BA']
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
