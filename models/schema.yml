@@ -1,0 +1,52 @@
+
+version: 2
+
+models: 
+  - name: stg_transactions
+    description: Transactions in the Ethereum Blockchain
+    columns: 
+      - name: hash
+        description: >
+          *[This is a long multi-line description]* hash is the unique 
+          identifier of each transaction in the Ethereum blockchain
+        data_tests: 
+          - unique
+          - not_null
+  
+  - name: stablecoin_activity_per_day
+    latest_version: 1
+    config: 
+      contract: 
+        enforced: true 
+        alias_types: true
+    columns:
+      - name: date
+        data_type: date
+        description: ""
+
+      - name: token_address
+        data_type: string
+        description: ""
+
+      - name: type
+        data_type: varchar
+        description: ""
+
+      - name: symbol
+        data_type: varchar
+        description: ""
+
+      - name: total_usd_value
+        data_type: float
+        description: ""
+    
+    versions: 
+      - v: 1
+        # Matches what's above - nothing more needed
+        deprecation_date: 2030-01-01
+      - v: 2
+        # Removed a column -- this is a breaking change!
+        columns: 
+          # This below means: use the 'columns' listed above, but exclude certain columns
+          - include: all
+            exclude: [token_address, symbol]
