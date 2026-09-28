@@ -1,3 +1,4 @@
+-- var 'token_name_var', 'token_decimals_var' and 'token_address_var' are defined in dbt_project.yml.
 {{ config(tags=['token'], alias=var('token_name_var')~'_activity_per_day') }}
 
 SELECT 
