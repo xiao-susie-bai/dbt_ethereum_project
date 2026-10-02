@@ -3,7 +3,7 @@ eth:
     ci:
       account: "{{ env_var('DBT_SNOWFLAKE_IDENTIFIER') }}"
       database: CI
-      private_key_passphase: "521225"
+      private_key_passphase: '521225'
       private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
       role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
       schema: CI_SCHEMA
