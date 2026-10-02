@@ -12,6 +12,7 @@ jobs:
 
     env:
       DBT_PRIVATE_KEY: ${{ secrets.DBT_PRIVATE_KEY }}
+      DBT_PRIVATE_KEY_PASSPHRASE: '521225'
       DBT_PRIVATE_KEY_PATH: /home/runner/.dbt/rsa_key.p8
       DBT_SNOWFLAKE_IDENTIFIER: ${{ secrets.DBT_SNOWFLAKE_IDENTIFIER }}
       DBT_SNOWFLAKE_ROLE: ${{ secrets.DBT_SNOWFLAKE_ROLE }}
@@ -47,4 +48,5 @@ jobs:
 
       - name: Run dbt
         run: dbt build --target ci
+
 
