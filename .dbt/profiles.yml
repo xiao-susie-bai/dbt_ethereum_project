@@ -6,18 +6,7 @@ eth:
       private_key_passphrase: '521225'
       private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
       role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
-      schema: "{{ env_var('DBT_SCHEMA') }}"
-      threads: 1
-      type: snowflake
-      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
-      warehouse: compute_wh
-    prod: 
-      account: "{{ env_var('DBT_SNOWFLAKE_IDENTIFIER') }}"
-      database: PROD
-      private_key_passphrase: '521225'
-      private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
-      role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
-      schema: PROD_SCHEMA
+      schema: CI_SCHEMA
       threads: 1
       type: snowflake
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
