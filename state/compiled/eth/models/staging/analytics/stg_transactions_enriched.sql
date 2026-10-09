@@ -1,10 +1,18 @@
-{{ config(materialized='incremental', incremental_strategy='append') }}
 
-WITH token_transfer_aggs AS (
+
+WITH  __dbt__cte__token_transfers_agg as (
+  
+
+select 
+transaction_hash, 
+COUNT(*) AS token_transfer_count
+from dbt.xiaobai.stg_token_transfers
+group by 1
+), token_transfer_aggs AS (
 select 
     transaction_hash, 
     COUNT(*) AS token_transfer_count
-from {{ ref('stg_token_transfers') }}
+from dbt.xiaobai.stg_token_transfers
 group by 1
 ), 
 
@@ -24,20 +32,18 @@ CASE
     WHEN tt.transaction_hash IS NOT NULL THEN 'token_transfer'
     WHEN t.input = '0x' AND t.value > 0 THEN 'plain_eth_transfer'
     ELSE 'other'
-END AS transaction_category, 
-1 as new_field, 
-2 as new_field_2
-FROM {{ ref('stg_transactions') }} t
+END AS transaction_category
+FROM dbt.xiaobai.stg_transactions t
 LEFT JOIN token_transfer_aggs tt 
     /*
-    {{ ref('eth', 'token_transfers_agg') }} tt       --'ephemeral' model
+    __dbt__cte__token_transfers_agg tt       --'ephemeral' model
     */
 ON t.hash = tt.transaction_hash
 
 
-{% if is_incremental() %}
-where date >= (select max(date) from {{ this }})
-{% endif %}
+
+where date >= (select max(date) from dbt.xiaobai.stg_transactions_enriched)
+
 
 )
 
