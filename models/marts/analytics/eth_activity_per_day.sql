@@ -4,7 +4,7 @@ SELECT
 date, 
 transaction_category, 
 COUNT(*) AS tx_count, 
-{{ethereum_conversion('value')}} AS sum_eth_value__Trust
+{{ethereum_conversion('value')}} AS sum_ethereum_value__Trust
 FROM {{ ref('stg_transactions_enriched') }}
 group by 1, 2
 
