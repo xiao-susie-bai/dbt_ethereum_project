@@ -49,8 +49,9 @@ jobs:
         run: dbt debug --target ci
 
       - name: Create state manifest from master
-        run: |
-          git checkout master
+        run: | 
+        git checkout -- state/manifest.json || true      # Reset local manifest tracking to safely checkout and keep master's state later
+        git checkout master
           dbt deps
           dbt parse --target prod
           mkdir -p state
