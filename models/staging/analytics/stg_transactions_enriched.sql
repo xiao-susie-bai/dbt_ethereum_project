@@ -24,7 +24,9 @@ CASE
     WHEN tt.transaction_hash IS NOT NULL THEN 'token_transfer'
     WHEN t.input = '0x' AND t.value > 0 THEN 'plain_eth_transfer'
     ELSE 'other'
-END AS transaction_category
+END AS transaction_category, 
+1 as new_field, 
+2 as new_field_2
 FROM {{ ref('stg_transactions') }} t
 LEFT JOIN token_transfer_aggs tt 
     /*
