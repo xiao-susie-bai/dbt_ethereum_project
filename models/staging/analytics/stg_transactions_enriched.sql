@@ -18,13 +18,14 @@ t.to_address,
 t.value, 
 t.receipt_contract_address, 
 t.input, 
-token_transfer_count, 
+token_transfer_count,
 CASE 
     WHEN t.receipt_contract_address != '' THEN 'contract_creation'
     WHEN tt.transaction_hash IS NOT NULL THEN 'token_transfer'
     WHEN t.input = '0x' AND t.value > 0 THEN 'plain_eth_transfer'
     ELSE 'other'
-END AS transaction_category
+END AS transaction_category, 
+1 as new_field
 FROM {{ ref('stg_transactions') }} t
 LEFT JOIN token_transfer_aggs tt 
     /*

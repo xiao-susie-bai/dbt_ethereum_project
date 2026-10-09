@@ -1,1 +1,0 @@
-{{ test_not_null(column_name="hash", model=get_where_subquery(ref('stg_transactions'))) }}
