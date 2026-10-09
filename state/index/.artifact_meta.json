@@ -1,0 +1,20 @@
+{
+  "target_dir": "/Users/baixiao/Documents/Udemy_dbt_cert_ethereum_project/eth/state",
+  "fingerprints": {
+    "manifest.json": {
+      "size": 875567,
+      "modified_secs": 1790559165
+    },
+    "run_results.json": {
+      "size": 347,
+      "modified_secs": 1790559165
+    },
+    "semantic_manifest.json": {
+      "size": 234,
+      "modified_secs": 1790559165
+    }
+  },
+  "write_source": "DirectWrite",
+  "context_dir": null,
+  "context_fingerprints": {}
+}
