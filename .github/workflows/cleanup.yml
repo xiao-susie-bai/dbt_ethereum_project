@@ -12,6 +12,7 @@ jobs:
 
     env:
       DBT_PRIVATE_KEY: ${{ secrets.DBT_PRIVATE_KEY }}
+      DBT_PRIVATE_KEY_PASSPHRASE: '521225'
       DBT_PRIVATE_KEY_PATH: /home/runner/.dbt/rsa_key.p8
       DBT_SNOWFLAKE_IDENTIFIER: ${{ secrets.DBT_SNOWFLAKE_IDENTIFIER }}
       DBT_SNOWFLAKE_ROLE: ${{ secrets.DBT_SNOWFLAKE_ROLE }}
@@ -36,6 +37,7 @@ jobs:
             cp .dbt/profiles.yml ~/.dbt/profiles.yml
             echo "$DBT_PRIVATE_KEY" > ~/.dbt/rsa_key.p8
             chmod 600 ~/.dbt/rsa_key.p8
+
         - name: Cleanup
           run: |
             dbt run-operation pr_schema_cleanup --target ci --args "{'database_to_clean': 'CI','age_in_days': -1}"
