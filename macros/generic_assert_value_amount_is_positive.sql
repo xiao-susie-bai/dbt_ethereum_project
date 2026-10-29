@@ -1,7 +1,10 @@
-{% test assert_value_amount_positive(model, column_name) %}
+{% test assert_value_amount_positive(model, column_name, field) %}
 
-select sum({{ column_name }}) as total_amount
+select {{field}}, 
+       sum({{ column_name }}) as total_amount
 from {{ model }}
+
+group by {{field}}
 
 having sum({{ column_name }}) < 0
 

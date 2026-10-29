@@ -55,4 +55,6 @@ models:
     columns: 
       - name: value
         data_tests: 
-          - assert_value_amount_positive
+          - assert_value_amount_positive: 
+              arguments: 
+                field: block_number
