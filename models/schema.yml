@@ -50,3 +50,9 @@ models:
           # This below means: use the 'columns' listed above, but exclude certain columns
           - include: all
             exclude: [token_address, symbol]
+  
+  - name: stg_transactions_enriched
+    columns: 
+      - name: value
+        data_tests: 
+          - assert_value_amount_positive
