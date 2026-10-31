@@ -33,7 +33,8 @@ models:
         description: ""
         data_tests: 
           - accepted_values: 
-              values: ['Hybrid', 'Crypto-backed', 'Fiat-backed']
+              arguments: 
+                values: ['Hybrid', 'Crypto-backed', 'Fiat-backed']
 
       - name: symbol
         data_type: varchar
