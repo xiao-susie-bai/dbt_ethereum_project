@@ -10,6 +10,11 @@ sources:
     tables: 
       - name: contracts
         identifier: cnt
+      - name: contracts_clone
       - name: token_transfers
       - name: transactions
-      - name: contracts_clone
+        columns: 
+          - name: hash
+            data_tests: 
+              - unique
+  

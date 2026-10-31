@@ -29,9 +29,9 @@ END AS transaction_category,
 2 as new_field_2
 FROM {{ ref('stg_transactions') }} t
 LEFT JOIN token_transfer_aggs tt 
-    /*
+    {#
     {{ ref('eth', 'token_transfers_agg') }} tt       --'ephemeral' model
-    */
+    #}
 ON t.hash = tt.transaction_hash
 
 
