@@ -49,13 +49,15 @@ jobs:
 
       - name: Create state manifest from master
         run: |
-          rm package-lock.yml
+          git restore package-lock.yml || true
+          
           git checkout master
-          rm package-lock.yml
           dbt deps
           dbt parse --target prod
           mkdir -p state
           cp target/manifest.json state/manifest.json
+
+          git restore package-lock.yml
           git checkout -
 
       # ---- Clone incrementals first (so is_incremental() is true) ----
