@@ -50,6 +50,7 @@ jobs:
       - name: Create state manifest from master
         run: |
           git checkout master
+          rm package-lock.yml
           dbt deps
           dbt parse --target prod
           mkdir -p state
