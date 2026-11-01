@@ -1,0 +1,13 @@
+snapshots: 
+  - name: airbnb_snap
+    relation: source('airbnb', 'apartment_listings')
+    config: 
+      # schema: snaps          #[Recommended practice: snapshots in custom schema]
+      # strategy: timestamp
+      # unique_key: listing_id
+      # updated_at: updated_at
+      # dbt_valid_to_current: "to_date('1970-01-01')"  # * can customize the 'DBT_VALID_TO' column in the snapshot
+      # hard_deletes: "new_record"
+      strategy: check
+      unique_key: listing_id
+      check_cols: 'all'

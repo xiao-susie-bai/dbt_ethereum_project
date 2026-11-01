@@ -29,4 +29,8 @@ sources:
           - name: hash
             data_tests: 
               - unique
-  
+  - name: airbnb
+    database: airbnb
+    schema: airbnb
+    tables: 
+      - name: apartment_listings
